@@ -27,7 +27,7 @@ export function Login() {
 
   async function handleLogin(email: string, password: string) {
     try {
-      const res = await apiCall.post('/api/login', {
+      const res = await apiCall.post('/login', {
         'email': email,
         'password': password,
       });
