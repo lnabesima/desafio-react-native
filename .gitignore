@@ -11,6 +11,7 @@ npm-debug.*
 web-build/
 .idea
 %ProgramData%%
+eas.json
 
 # macOS
 .DS_Store
