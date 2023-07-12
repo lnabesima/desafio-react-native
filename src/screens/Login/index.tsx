@@ -1,10 +1,10 @@
 import { Container } from '@screens/Login/styles';
 import { StyledInput } from '@components/Input';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@components/Button';
 import { apiCall } from '@utils/axios';
 import { setLoginToken } from '@storage/Login/setLoginToken';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { getLoginToken } from '@storage/Login/getLoginToken';
 
 export function Login() {
@@ -32,6 +32,8 @@ export function Login() {
         'password': password,
       });
       await setLoginToken(res.data.token);
+      setEmail('');
+      setPassword('');
       // @ts-ignore
       navigator.navigate('users');
     } catch (error) {
@@ -39,7 +41,7 @@ export function Login() {
     }
   }
 
-  useFocusEffect(useCallback(() => {
+  useEffect(useCallback(() => {
     fetchStoredToken().then();
   }, []));
 
