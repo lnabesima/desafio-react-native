@@ -55,6 +55,6 @@ export function Login() {
                  secureTextEntry={true} autoCorrect={false}
                  autoCapitalize={'none'}
                  value={password} onChangeText={setPassword}/>
-    <Button label={'Teste'} onPress={() => handleLogin(email, password)}/>
+    <Button label={'Login'} onPress={() => handleLogin(email, password)}/>
   </Container>;
 }

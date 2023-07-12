@@ -8,5 +8,5 @@ export const UserCardContainer = styled(View)`
   align-items: center;
   gap: 8px;
   border-radius: 8px;
-  
+  margin-bottom: 16px;
 `;
