@@ -12,4 +12,5 @@ export const Input = styled(TextInput)`
 `;
 export const Label = styled(Text)`
   font-size: 14px;
+  color: #BFB6AE
 `;
