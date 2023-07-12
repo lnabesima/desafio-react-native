@@ -8,8 +8,8 @@ export function AppRouter() {
   return (
     <Navigator
       screenOptions={{ headerShown: false }}>
-      <Screen name={'users'} component={Users}/>
       <Screen name={'login'} component={Login}/>
+      <Screen name={'users'} component={Users}/>
     </Navigator>
   );
 }
