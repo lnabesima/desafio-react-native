@@ -1,18 +1,29 @@
 import { Container } from '@screens/Login/styles';
 import { StyledInput } from '@components/Input';
-import { useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Button } from '@components/Button';
 import { apiCall } from '@utils/axios';
-import { getLoginToken } from '@storage/Login/getLoginToken';
 import { setLoginToken } from '@storage/Login/setLoginToken';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { getLoginToken } from '@storage/Login/getLoginToken';
 
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    getLoginToken();
-  }, []);
+  const navigator = useNavigation();
+
+  async function fetchStoredToken() {
+    try {
+      const token = await getLoginToken();
+      if (!!token) {
+        // @ts-ignore
+        navigator.navigate('users');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function handleLogin(email: string, password: string) {
     try {
@@ -20,12 +31,17 @@ export function Login() {
         'email': email,
         'password': password,
       });
-      console.log(res.data.token);
       await setLoginToken(res.data.token);
+      // @ts-ignore
+      navigator.navigate('users');
     } catch (error) {
       console.log(error);
     }
   }
+
+  useFocusEffect(useCallback(() => {
+    fetchStoredToken().then();
+  }, []));
 
   return <Container>
     <StyledInput style={{ marginBottom: 16 }} placeholder={'email@email.com'}
