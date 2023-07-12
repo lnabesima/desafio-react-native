@@ -3,6 +3,7 @@ import { TouchableOpacityProps } from 'react-native';
 
 interface ButtonProps extends TouchableOpacityProps {
   label: string;
+  onPress: () => void;
 }
 
 export function Button({ label, onPress, ...rest }: ButtonProps) {
